@@ -13,8 +13,7 @@ export const Register = () => {
   const [user, setUser] = useRecoilState(Auth);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("");
-  const [passoutyear, setPassoutyear] = useState("");
+  
 
   const [jwt, setJwt] = useRecoilState(jsonwebtoken);
   const [loading, setLoading] = useRecoilState(Load);
@@ -50,8 +49,7 @@ export const Register = () => {
             name: user.name,
             email: email,
             password: password,
-            role,
-            passoutyear,
+            
           },
           { withCredentials: true }
         );
@@ -116,12 +114,12 @@ export const Register = () => {
     enteredOtp.length !== 6;
 
   return (
-    <>
+    <div className="auth-container">
       <ToastContainer />
       {loading ? (
         <></>
       ) : (
-        <Container>
+        <Container >
           <Row>
             <Col lg={3} xs={0}></Col>
             <Col lg={6} xs={12}>
@@ -147,25 +145,7 @@ export const Register = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                     />
-                    <input
-                      required
-                      className="form-control"
-                      type="number"
-                      placeholder="Passout Year"
-                      value={passoutyear}
-                      onChange={(e) => setPassoutyear(e.target.value)}
-                    />
-                    <select
-                      required
-                      className="form-control"
-                      value={role}
-                      onChange={(e) => setRole(e.target.value)}
-                    >
-                      <option value="">Select Role</option>
-                      <option value="Alumni">Alumni</option>
-                      <option value="Student">Student</option>
-                      <option value="Staff">Staff</option>
-                    </select>
+                    
 
                     <input
                       className={`form-control ${
@@ -261,6 +241,6 @@ export const Register = () => {
           </Row>
         </Container>
       )}
-    </>
+    </div>
   );
 };
