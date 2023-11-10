@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from '../Axios/Axios'
+import axios from "../Axios/Axios";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { Auth, jsonwebtoken, Load,  } from "../Atom/Atom";
+import { Auth, jsonwebtoken, Load } from "../Atom/Atom";
 import { useNavigate } from "react-router-dom";
 import { Col, Container, Row } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
@@ -116,12 +116,7 @@ export const Login = () => {
                   >
                     submit
                   </button>
-                  <span >
-                    Forget Password?{" "}
-                    <Link to="/resetpassword" style={{ color: "red" }}>
-                      Reset
-                    </Link>
-                  </span>
+                  
                   <span>
                     Don't you have an account?{" "}
                     <Link to="/Register" style={{ color: "red" }}>
