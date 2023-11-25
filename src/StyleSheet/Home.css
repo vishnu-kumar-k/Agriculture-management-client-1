@@ -32,3 +32,33 @@
   overflow-y: auto; /* This allows vertical scrolling */
   transition: background-image 0.3s; /* Transition for smoother effect */
 }
+.about-us {
+  background-image: url("../Images/image-5.jpg");
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fffefe; /* Set text color to white for better visibility on the image */
+}
+.predictcorp {
+  background-image: url("../Images/image-7.jpg");
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fffefe; /* Set text color to white for better visibility on the image */
+}
+.contact-us {
+  background-image: url("../Images/image-6.jpg");
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fffefe; /* Set text color to white for better visibility on the image */
+}

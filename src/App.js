@@ -7,6 +7,11 @@ import { Register } from "./Pages/Register";
 import { Container } from "react-bootstrap";
 import Navbars from "./Components/Navbar";
 import CropPredictionForm from "./Pages/CorpPredictionForm";
+import ContactUs from "./Pages/ContactUs";
+import AboutUs from "./Pages/AboutUs";
+import PlantTips from "./Pages/PlantTips";
+import ProductPortfolio from "./Pages/Product-Portfolio";
+import DashBoard from "./Pages/DashBoard";
 
 function App() {
   const router = createBrowserRouter([
@@ -16,7 +21,7 @@ function App() {
     },
     {
       path: "/",
-      element:<Container> <Home /></Container>,
+      element:<Container fluid> <Home /></Container>,
     },
     {
       path:"/register",
@@ -25,6 +30,26 @@ function App() {
     {
       path:"/predictcorp",
       element:<><Navbars/><CropPredictionForm /></>
+    },
+    {
+      path:"/contactus",
+      element:<><Navbars/><ContactUs /></>
+    },
+    {
+      path:"/aboutus",
+      element:<><Navbars/><AboutUs /></>
+    },
+    {
+      path:'/corp-portfolio',
+      element:<Container fluid><Navbars /><PlantTips /></Container>
+    },
+    {
+      path:'/product-portfolio',
+      element:<Container fluid><Navbars /><ProductPortfolio/></Container>
+    },
+    {
+      path:'/dashboard',
+      element:<Container fluid><Navbars /><DashBoard /></Container>
     }
   ]);
   return (

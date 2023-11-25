@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+import '../StyleSheet/Home.css'
 
 function CropPredictionForm() {
   const [formData, setFormData] = useState({
     soilType: '',
-    pHLevel: '',
     temperatureRange: '',
     precipitation: '',
     altitude: '',
@@ -25,7 +25,7 @@ function CropPredictionForm() {
       pHLevel: '',
       temperatureRange: '',
       precipitation: '',
-      altitude: '',
+      farmingType: '',
       previousCrop: '',
       landSize: '',
       drainage: ''
@@ -33,7 +33,7 @@ function CropPredictionForm() {
   };
 
   return (
-    <Container>
+    <Container className='predictcorp'>
       <Form onSubmit={handleSubmit}>
         <Row className="mb-3">
           <Form.Group as={Col} controlId="soilType">
@@ -46,24 +46,17 @@ function CropPredictionForm() {
             />
           </Form.Group>
 
-          <Form.Group as={Col} controlId="pHLevel">
-            <Form.Label>Soil pH Level</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter pH level"
-              value={formData.pHLevel}
-              onChange={handleChange}
-            />
-          </Form.Group>
+          
         </Row>
 
         <Row className="mb-3">
-          <Form.Group as={Col} controlId="temperatureRange">
-            <Form.Label>Temperature Range</Form.Label>
+          
+          <Form.Group as={Col} controlId="altitude">
+            <Form.Label>FarmingType</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Enter temperature range"
-              value={formData.temperatureRange}
+              placeholder="Enter FarmingType"
+              value={formData.farmingType}
               onChange={handleChange}
             />
           </Form.Group>
@@ -80,14 +73,15 @@ function CropPredictionForm() {
         </Row>
 
         <Row className="mb-3">
-          <Form.Group as={Col} controlId="altitude">
-            <Form.Label>Altitude</Form.Label>
+        <Form.Group as={Col} controlId="temperatureRange">
+            <Form.Label>Temperature Range</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Enter altitude"
-              value={formData.altitude}
+              placeholder="Enter temperature range"
+              value={formData.temperatureRange}
               onChange={handleChange}
             />
+            
           </Form.Group>
 
           <Form.Group as={Col} controlId="previousCrop">
