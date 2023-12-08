@@ -12,6 +12,7 @@ import AboutUs from "./Pages/AboutUs";
 import PlantTips from "./Pages/PlantTips";
 import ProductPortfolio from "./Pages/Product-Portfolio";
 import DashBoard from "./Pages/DashBoard";
+import CropInformationForm from "./Pages/CorpInformationForm";
 
 function App() {
   const router = createBrowserRouter([
@@ -50,6 +51,10 @@ function App() {
     {
       path:'/dashboard',
       element:<Container fluid><Navbars /><DashBoard /></Container>
+    },
+    {
+      path:'/corpsuggester',
+      element:<Container fluid ><Navbars /><CropInformationForm /></Container>
     }
   ]);
   return (

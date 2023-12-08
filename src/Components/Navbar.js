@@ -1,11 +1,12 @@
 import { Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
 import { useRecoilState } from "recoil";
-import { Auth, jsonwebtoken } from "../Atom/Atom";
+import { Auth, Load, jsonwebtoken } from "../Atom/Atom";
 import { useNavigate } from "react-router-dom";
 
 function Navbars() {
   const [user, setUser] = useRecoilState(Auth);
   const [jwt, setJwt] = useRecoilState(jsonwebtoken);
+  const[loading,setLoading]=useRecoilState(Load)
   const navigate = useNavigate();
 
   const handleLogout = (e) => {
@@ -15,14 +16,15 @@ function Navbars() {
     setJwt("");
   };
 
-  return (
+  return (<>{loading?null:(
     <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
-      <Navbar.Brand onClick={() => navigate("/")}>CorpPredictor</Navbar.Brand>
-
+  <Navbar.Brand onClick={() => navigate("/")}>CorpPredictor</Navbar.Brand>
+  {user.status ? (
+    <>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="me-auto">
-          <NavDropdown title="Product Portfolio" id="basic-nav-dropdown">
+        <NavDropdown title="Product Portfolio" id="basic-nav-dropdown">
             <NavDropdown.Item
               onClick={() =>
                 navigate("/product-portfolio#Enhanced-Efficiency-Fertilizers")
@@ -108,27 +110,30 @@ function Navbars() {
               Maize Farming Tips
             </NavDropdown.Item>
           </NavDropdown>
-          <Nav.Link onClick={() => navigate("/#")}>Dose Calculator</Nav.Link>
+          <Nav.Link onClick={() => navigate("/corpsuggester")}>Corp Suggester</Nav.Link>
           <Nav.Link onClick={() => navigate("/#")}>Locate A Retailer</Nav.Link>
           <Nav.Link onClick={() => navigate("/aboutus")}>About Us</Nav.Link>
           <Nav.Link onClick={() => navigate("/contactus")}>Contact Us</Nav.Link>
+
         </Nav>
         <Nav>
-          {user.status ? (
-            <>
-              <Nav.Link>{user.name}</Nav.Link>
-              <Nav.Link onClick={()=>navigate('/dashboard')}>DashBoard</Nav.Link>
-            </>
-          ) : (
-            <>
-              <Nav.Link onClick={() => navigate("/login")}>Login</Nav.Link>
-              <Nav.Link onClick={() => navigate("/register")}>Sign Up</Nav.Link>
-            </>
-          )}
+          <Nav.Link>{user.name}</Nav.Link>
+          <Nav.Link onClick={() => navigate('/dashboard')}>DashBoard</Nav.Link>
         </Nav>
       </Navbar.Collapse>
-    </Navbar>
-  );
+    </>
+  ) : (
+    <>
+      <Nav className="right ml-auto">
+        <Nav.Link onClick={() => navigate("/login")}>Login</Nav.Link>
+        <Nav.Link onClick={() => navigate("/register")}>Sign Up</Nav.Link>
+      </Nav>
+    </>
+  )}
+</Navbar>
+)}</>
+
+     );
 }
 
 export default Navbars;
