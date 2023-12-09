@@ -68,8 +68,8 @@ export const Login = () => {
       ) : (
         <>
           <Row>
-            <Col xs={0} md={3}></Col>
-            <Col xs={12} md={6}>
+            <Col xs={0} md={4}></Col>
+            <Col xs={12} md={4}>
               <div className="auth">
                 <h1>Login</h1>
                 <form onSubmit={HandleSumbit}>
@@ -126,7 +126,7 @@ export const Login = () => {
                 </form>
               </div>
             </Col>
-            <Col xs={0} md={3}></Col>
+            <Col xs={0} md={4}></Col>
           </Row>
         </>
       )}

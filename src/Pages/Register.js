@@ -121,8 +121,8 @@ export const Register = () => {
       ) : (
         <Container >
           <Row>
-            <Col lg={3} xs={0}></Col>
-            <Col lg={6} xs={12}>
+            <Col lg={4} xs={0}></Col>
+            <Col lg={4} xs={12}>
               <div className="auth">
                 <h1>Signup</h1>
                 {!otp ? (
@@ -237,7 +237,7 @@ export const Register = () => {
                 )}
               </div>
             </Col>
-            <Col md={6} xs={0}></Col>
+            <Col md={4} xs={0}></Col>
           </Row>
         </Container>
       )}
