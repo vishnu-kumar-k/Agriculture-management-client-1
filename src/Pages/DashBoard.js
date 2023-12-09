@@ -2,10 +2,14 @@ import React, { useEffect, useState } from "react";
 import profileImage from "../Images/profile.png"; // Replace with your actual image path
 import axios from "../Axios/Axios";
 import { ToastContainer, toast } from "react-toastify";
+import { useRecoilState } from "recoil";
+import { Auth } from "../Atom/Atom";
+import { Button } from "react-bootstrap";
 
 const DashBoard = () => {
   const [userData, setUserData] = useState({});
-  const[c,setC]=useState(1);
+  const [c, setC] = useState(1);
+  const [user, setUser] = useRecoilState(Auth);
   const [updatedFields, setUpdatedFields] = useState({
     phoneNumber: "",
     location: "",
@@ -15,10 +19,8 @@ const DashBoard = () => {
   });
 
   useEffect(() => {
-    const email = "vishnuk55265@gmail.com";
-
     axios
-      .post("/getprofile", { email })
+      .post("/getprofile", { id: user.id })
       .then((response) => {
         setUserData(response.data);
       })
@@ -35,24 +37,22 @@ const DashBoard = () => {
   };
 
   const handleUpdateProfile = () => {
-    // Assuming you have an endpoint for updating the profile
     axios
       .post("/updateprofile", { email: userData.email, ...updatedFields })
       .then((response) => {
         console.log("Profile updated successfully:", response.data);
-        setC(prev=>prev+1)
-        toast.success("Updated Successfully")
-        // You may want to fetch the updated profile data here or handle it as needed
+        setC((prev) => prev + 1);
+        toast.success("Updated Successfully");
       })
       .catch((error) => {
-        toast.error("Something went wrong")
+        toast.error("Something went wrong");
         console.error("Error updating profile:", error);
       });
   };
 
   return (
     <div style={styles.container}>
-        <ToastContainer />
+      <ToastContainer />
       <div style={styles.dashboard}>
         <img src={profileImage} alt="Profile" style={styles.profileImage} />
         <h2 style={styles.title}>User Dashboard</h2>
@@ -81,50 +81,68 @@ const DashBoard = () => {
         </div>
         <div style={styles.updateFields}>
           <h3>Update Profile Fields:</h3>
-          <label>
-            Phone Number:
-            <input
-              type="text"
-              value={updatedFields.phoneNumber}
-              onChange={(e) => handleFieldChange("phoneNumber", e.target.value)}
-            />
-          </label>
-          <label>
-            Location:
-            <input
-              type="text"
-              value={updatedFields.location}
-              onChange={(e) => handleFieldChange("location", e.target.value)}
-            />
-          </label>
-          <label>
-            Plant Type:
-            <input
-              type="text"
-              value={updatedFields.plantType}
-              onChange={(e) => handleFieldChange("plantType", e.target.value)}
-            />
-          </label>
-          <label>
-            No. of Lands:
-            <input
-              type="text"
-              value={updatedFields.numberOfLands}
-              onChange={(e) =>
-                handleFieldChange("numberOfLands", e.target.value)
-              }
-            />
-          </label>
-          <label>
-            Acreage:
-            <input
-              type="text"
-              value={updatedFields.acreage}
-              onChange={(e) => handleFieldChange("acreage", e.target.value)}
-            />
-          </label>
+          <div style={styles.updateFieldsLabel}>
+            <label>
+              Phone Number:
+              <input
+                type="text"
+                value={updatedFields.phoneNumber}
+                onChange={(e) =>
+                  handleFieldChange("phoneNumber", e.target.value)
+                }
+              />
+            </label>
+          </div>
+          <div style={styles.updateFieldsLabel}>
+            <label>
+              Location:
+              <input
+                type="text"
+                value={updatedFields.location}
+                onChange={(e) =>
+                  handleFieldChange("location", e.target.value)
+                }
+              />
+            </label>
+          </div>
+          <div style={styles.updateFieldsLabel}>
+            <label>
+              Plant Type:
+              <input
+                type="text"
+                value={updatedFields.plantType}
+                onChange={(e) =>
+                  handleFieldChange("plantType", e.target.value)
+                }
+              />
+            </label>
+          </div>
+          <div style={styles.updateFieldsLabel}>
+            <label>
+              No. of Lands:
+              <input
+                type="text"
+                value={updatedFields.numberOfLands}
+                onChange={(e) =>
+                  handleFieldChange("numberOfLands", e.target.value)
+                }
+              />
+            </label>
+          </div>
+          <div style={styles.updateFieldsLabel}>
+            <label>
+              Acreage:
+              <input
+                type="text"
+                value={updatedFields.acreage}
+                onChange={(e) =>
+                  handleFieldChange("acreage", e.target.value)
+                }
+              />
+            </label>
+          </div>
           <br />
-          <button onClick={handleUpdateProfile}>Update Profile</button>
+          <Button variant="outline-primary" onClick={handleUpdateProfile}>Update Profile</Button>
         </div>
       </div>
     </div>
@@ -164,9 +182,12 @@ const styles = {
   },
   updateFields: {
     marginTop: "20px",
-    textAlign: "center", // Center text and form elements
-    maxWidth: "400px", // Set a maximum width for better readability
-    margin: "0 auto", // Center the div horizontally
+    textAlign: "center",
+    maxWidth: "400px",
+    margin: "0 auto",
+  },
+  updateFieldsLabel: {
+    marginBottom: "10px",
   },
 };
 

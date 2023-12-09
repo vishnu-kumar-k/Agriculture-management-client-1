@@ -3,6 +3,7 @@ import { useRecoilState } from 'recoil';
 import { Load } from '../Atom/Atom';
 import Loading from '../Components/Loading';
 import { ToastContainer, toast } from 'react-toastify';
+import { Button } from 'react-bootstrap';
 
 const CropInformationForm = () => {
   const [formData, setFormData] = useState({
@@ -172,11 +173,11 @@ const CropInformationForm = () => {
                   </option>
                 ))}
               </select>
-            </div>
+            </div><br />
 
-            <button type="submit" className="btn btn-primary mt-3">
+            <Button type="submit" variant='outline-danger' >
               Submit
-            </button>
+            </Button>
           </form>
         </div>
       </div>
