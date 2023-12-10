@@ -33,7 +33,7 @@ export const Login = () => {
         setLoading(false);
         if (result.data.status) {
           localStorage.setItem("jwt", result.data.token);
-
+          //console.log(result.data);
           setJwt(result.data.token);
           await setName({
             name: result.data.name,

@@ -38,7 +38,7 @@ const DashBoard = () => {
 
   const handleUpdateProfile = () => {
     axios
-      .post("/updateprofile", { email: userData.email, ...updatedFields })
+      .post("/updateprofile", { email: userData.email,id:user.id, ...updatedFields })
       .then((response) => {
         console.log("Profile updated successfully:", response.data);
         setC((prev) => prev + 1);
