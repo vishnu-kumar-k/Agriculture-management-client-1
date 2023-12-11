@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-
+import '../StyleSheet/Home.css'
 const ProductPortfolio = () => {
     
 
@@ -98,9 +98,9 @@ const ProductPortfolio = () => {
       ];
       
   return (
-    <div>
-       <div>
-      {/* Enhanced Efficiency Fertilizers */}
+    <div className='product-portfolio-container'>
+       <div className='product-portfolio'>
+      
       <div id="Enhanced-Efficiency-Fertilizers">
         <h2>Key Aspects and Benefits of Enhanced Efficiency Fertilizers (EEFs)</h2>
         <ul>

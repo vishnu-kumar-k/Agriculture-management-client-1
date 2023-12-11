@@ -32,6 +32,7 @@
     background-size: cover; /* Adjusts the background image to cover the entire container responsively */
     background-position: center;
     background-attachment: fixed;
+    min-height: 100vh;
 }
 
 .container-login {

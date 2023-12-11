@@ -2,7 +2,12 @@ import { Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
 import { useRecoilState } from "recoil";
 import { Auth, Load, jsonwebtoken } from "../Atom/Atom";
 import { useNavigate } from "react-router-dom";
-
+import { useEffect } from "react";
+import axios from "../Axios/Axios";
+import { CiLogin } from "react-icons/ci";
+import { GoSignIn } from "react-icons/go";
+import { LuLogOut } from "react-icons/lu";
+import { FaRegUserCircle } from "react-icons/fa";
 function Navbars() {
   const [user, setUser] = useRecoilState(Auth);
   const [jwt, setJwt] = useRecoilState(jsonwebtoken);
@@ -10,11 +15,24 @@ function Navbars() {
   const navigate = useNavigate();
 
   const handleLogout = (e) => {
-    e.preventDefault();
+   // e.preventDefault();
     setUser({ status: false, name: "" });
     localStorage.removeItem("jwt");
     setJwt("");
+    navigate("/")
   };
+  useEffect(()=>{
+    setLoading(true)
+    axios.post("/verify",{jwt}).then((result)=>{
+
+      if(result.data.status)
+      {
+        setUser({status:true,name:result.data.name,id:result.data.id});
+      }
+
+    }).catch((err)=>console.log(err));
+    setLoading(false);
+  },[]);
 
   return (<>{loading?null:(
     <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
@@ -118,15 +136,16 @@ function Navbars() {
         </Nav>
         <Nav>
           <Nav.Link>{user.name}</Nav.Link>
-          <Nav.Link onClick={() => navigate('/dashboard')}>DashBoard</Nav.Link>
+          <Nav.Link onClick={() => navigate('/dashboard')}>DashBoard<FaRegUserCircle /></Nav.Link>
+          <Nav.Link onClick={() => {handleLogout()}}>Logout<LuLogOut /></Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </>
   ) : (
     <>
       <Nav className="right ml-auto">
-        <Nav.Link onClick={() => navigate("/login")}>Login</Nav.Link>
-        <Nav.Link onClick={() => navigate("/register")}>Sign Up</Nav.Link>
+        <Nav.Link onClick={() => navigate("/login")}>Login<CiLogin /></Nav.Link>
+        <Nav.Link onClick={() => navigate("/register")}>Sign Up<GoSignIn /></Nav.Link>
       </Nav>
     </>
   )}

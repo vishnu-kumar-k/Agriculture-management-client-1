@@ -3,3 +3,25 @@
 * {
     font-family: 'Almarai', sans-serif;
 }
+.corpSuggester {
+    position: relative;
+}
+
+.corpSuggester::before {
+    content: "";
+    background-image: url("../Images/image-9.jpg");
+    background-size: cover;
+    
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    background-position: center center;
+    opacity: 0.6; /* Adjust the opacity value as needed (between 0 and 1) */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    
+}
+

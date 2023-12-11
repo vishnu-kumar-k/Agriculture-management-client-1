@@ -1,8 +1,8 @@
 import React from "react";
-
+import "../StyleSheet/Home.css"
 const PlantTips = () => {
-  return (
-    <div>
+  return (<div className="plant-tips-container">
+    <div className="plant-tips">
       <h1>Corp Nutriention Management</h1>
       <p>
         Application of organic manure helps in maintaining the organic matter of
@@ -81,6 +81,7 @@ const PlantTips = () => {
         Grapes are harvested at the right stage and properly packed so that
         farmers get the best price for their produce.
       </p>
+    </div>
     </div>
   );
 };

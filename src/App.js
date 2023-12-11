@@ -13,7 +13,7 @@ import PlantTips from "./Pages/PlantTips";
 import ProductPortfolio from "./Pages/Product-Portfolio";
 import DashBoard from "./Pages/DashBoard";
 import CropInformationForm from "./Pages/CorpInformationForm";
-
+import '../src/StyleSheet/App.css'
 function App() {
   const router = createBrowserRouter([
     {
@@ -38,7 +38,7 @@ function App() {
     },
     {
       path:"/aboutus",
-      element:<><Navbars/><AboutUs /></>
+      element:<div ><Navbars/><div className='about-us'><AboutUs /></div></div>
     },
     {
       path:'/corp-portfolio',
@@ -54,7 +54,7 @@ function App() {
     },
     {
       path:'/corpsuggester',
-      element:<Container fluid ><Navbars /><CropInformationForm /></Container>
+      element:<Container fluid className="corpSuggester"><Navbars /><CropInformationForm /></Container>
     }
   ]);
   return (

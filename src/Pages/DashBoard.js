@@ -10,6 +10,7 @@ const DashBoard = () => {
   const [userData, setUserData] = useState({});
   const [c, setC] = useState(1);
   const [user, setUser] = useRecoilState(Auth);
+  console.log(user)
   const [updatedFields, setUpdatedFields] = useState({
     phoneNumber: "",
     location: "",

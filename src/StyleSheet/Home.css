@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@500&display=swap');
 
   @import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500&display=swap');
-
+  @import url('https://fonts.googleapis.com/css2?family=Almarai&family=Poppins:wght@300&display=swap');
 .home-content {
   background-color: rgb(130, 235, 207);
   padding: 3em;
@@ -37,6 +37,7 @@
   background-size: cover;
   height: 100vh;
   display: flex;
+  
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -60,5 +61,66 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-family: 'Almarai', sans-serif;
+font-family: 'Poppins', sans-serif;
   color: #fffefe; /* Set text color to white for better visibility on the image */
+}
+
+.about-us-container{
+  text-align: center;
+  background-color: rgb(236, 236, 236,.7);
+  padding: 3em;
+  border-radius: 1em 2em 3em 4em;
+  font-size: 1.2em;
+  color: black;
+  font-family: 'Poppins', sans-serif;
+}
+.about-us-container h1{
+  text-align: center;
+  background-color: rgba(87, 115, 118, 0.6);
+  padding: 1em;
+  border-radius: 1em 2em 3em 4em;
+}
+
+.product-portfolio-container {
+  background-image: url("../Images/image-7.jpg");
+  background-size: cover;
+  background-attachment: fixed; /* Add this line to fix the background image */
+  
+  display: flex;
+  flex-direction: column;
+  
+   /* Set text color to white for better visibility on the image */
+}
+
+.product-portfolio{
+  background-color: #ffffffbb;
+  font-size: 1.3em;
+  padding: 4em;
+  color: rgb(0, 0, 0);
+  
+  
+  
+}
+
+
+.plant-tips-container {
+  background-image: url("../Images/image-9.jpg");
+  background-size: cover;
+  background-attachment: fixed; /* Add this line to fix the background image */
+  
+  display: flex;
+  flex-direction: column;
+  
+   /* Set text color to white for better visibility on the image */
+}
+
+.plant-tips{
+  background-color: #ffffffbb;
+  font-size: 1.3em;
+  padding: 4em;
+  color: rgb(0, 0, 0);
+ 
+  
+  
 }

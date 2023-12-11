@@ -100,6 +100,7 @@ const styles = {
   form: {
     maxWidth: "400px",
     margin: "0 auto",
+    
   },
   label: {
     display: "block",
