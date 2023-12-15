@@ -8,9 +8,11 @@ import Loading from '../Components/Loading';
 import { ToastContainer, toast } from 'react-toastify';
 import { Button } from 'react-bootstrap';
 import '../StyleSheet/CorpSuggestor.css';
+import axios from '../Axios/Axios';
 
 const Typewriter = ({ text, speed }) => {
   const [displayedText, setDisplayedText] = useState('');
+  
 
   useEffect(() => {
     let currentIndex = 0;
@@ -34,6 +36,8 @@ const Typewriter = ({ text, speed }) => {
 };
 
 const CropInformationForm = () => {
+  const [plant, setPlant] = useState('');
+  const [disease, setDisease] = useState('');
   const [formData, setFormData] = useState({
     cropType: '',
     cropVariety: '',
@@ -144,7 +148,23 @@ const CropInformationForm = () => {
       Monitor for environmental stressors such as nutrient deficiencies and address them promptly.
       `,
   };
-  
+  const handleSubmitCrop = async (e) => {
+    e.preventDefault();
+
+    try {
+      // Send data to the "/addplant" endpoint using Axios
+      await axios.post('/addplant', { plant, disease });
+
+      // Clear form fields after successful submission
+      setPlant('');
+      setDisease('');
+      toast.success("Thanking for providing.We will add soon")
+      // You can add additional logic or feedback for the user here
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      // Handle errors or provide feedback to the user
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -301,6 +321,38 @@ const CropInformationForm = () => {
           )}
         </div>
       )}
+      <div className="container mt-5" style={{ opacity: 1 }}>
+          <div className="row justify-content-center">
+            <div className="col-md-6 form-container">
+        <h1>Do you want a solution for any other crops?</h1>
+        <form onSubmit={handleSubmitCrop}>
+          <div className="mb-3">
+            <label htmlFor="plantInput" className="form-label">Plant:</label>
+            <input
+              type="text"
+              className="form-control"
+              id="plantInput"
+              value={plant}
+              onChange={(e) => setPlant(e.target.value)}
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="diseaseInput" className="form-label">Disease:</label>
+            <input
+              type="text"
+              className="form-control"
+              id="diseaseInput"
+              value={disease}
+              onChange={(e) => setDisease(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit" className="btn btn-primary">Submit</button>
+        </form>
+      </div>
+      </div>
+      </div>
     </>
   );
 };

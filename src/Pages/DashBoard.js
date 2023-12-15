@@ -4,13 +4,13 @@ import axios from "../Axios/Axios";
 import { ToastContainer, toast } from "react-toastify";
 import { useRecoilState } from "recoil";
 import { Auth } from "../Atom/Atom";
-import { Button } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
 
 const DashBoard = () => {
   const [userData, setUserData] = useState({});
   const [c, setC] = useState(1);
   const [user, setUser] = useRecoilState(Auth);
-  console.log(user)
+  console.log(user);
   const [updatedFields, setUpdatedFields] = useState({
     phoneNumber: "",
     location: "",
@@ -39,7 +39,11 @@ const DashBoard = () => {
 
   const handleUpdateProfile = () => {
     axios
-      .post("/updateprofile", { email: userData.email,id:user.id, ...updatedFields })
+      .post("/updateprofile", {
+        email: userData.email,
+        id: user.id,
+        ...updatedFields,
+      })
       .then((response) => {
         console.log("Profile updated successfully:", response.data);
         setC((prev) => prev + 1);
@@ -52,101 +56,134 @@ const DashBoard = () => {
   };
 
   return (
-    <div style={styles.container}>
-      <ToastContainer />
-      <div style={styles.dashboard}>
-        <img src={profileImage} alt="Profile" style={styles.profileImage} />
-        <h2 style={styles.title}>User Dashboard</h2>
-        <div style={styles.details}>
-          <p>
-            <strong>Name:</strong> {userData.name}
-          </p>
-          <p>
-            <strong>Email:</strong> {userData.email}
-          </p>
-          <p>
-            <strong>Phone Number:</strong> {userData.phoneNumber}
-          </p>
-          <p>
-            <strong>Location:</strong> {userData.location}
-          </p>
-          <p>
-            <strong>Plant Type:</strong> {userData.plantType}
-          </p>
-          <p>
-            <strong>No. of Lands:</strong> {userData.numberOfLands}
-          </p>
-          <p>
-            <strong>Acreage:</strong> {userData.acreage} acres
-          </p>
+    <Row style={styles.container}>
+      <Col md={3}></Col>
+      <Col md={6}>
+        <div style={styles.dashboard}>
+          <ToastContainer />
+          <div>
+            <div style={{ textAlign: "center" }}>
+              <img
+                src={profileImage}
+                
+                alt="Profile"
+                width={100}
+              />
+            </div>
+            <h2 style={styles.title}>User Dashboard</h2>
+            <Row>
+              <Col md={2}></Col>
+              <Col md={4}>
+                <p>Name:</p>
+                <p>Email:</p>
+                <p>phoneNumber</p>
+                <p>Location:</p>
+                <p>Plant Type:</p>
+                <p>No. of Lands:</p>
+                <p>Acreage:</p>
+              </Col>
+              <Col md={4}>
+                <p>{userData.name}</p>
+                <p>{userData.email}</p>
+                <p>{userData.phoneNumber}</p>
+                <p>{userData.location}</p>
+                <p>{userData.plantType}</p>
+                <p>{userData.numberOfLands}</p>
+                <p>{userData.acreage} acres</p>
+              </Col>
+
+              <Col md={2}></Col>
+            </Row>
+            <Row>
+              <Col md={2}></Col>
+
+              <Col md={8}>
+                <div>
+                  <h3 style={styles.title}>Update Profile Fields:</h3>
+
+                  <div className="mb-3">
+                    <label className="form-label">
+                      Phone Number:
+                      <input
+                        type="text"
+                        className="form-control"
+                        value={updatedFields.phoneNumber}
+                        onChange={(e) =>
+                          handleFieldChange("phoneNumber", e.target.value)
+                        }
+                      />
+                    </label>
+                  </div>
+
+                  <div className="mb-3">
+                    <label className="form-label">
+                      Location:
+                      <input
+                        type="text"
+                        className="form-control"
+                        value={updatedFields.location}
+                        onChange={(e) =>
+                          handleFieldChange("location", e.target.value)
+                        }
+                      />
+                    </label>
+                  </div>
+
+                  <div className="mb-3">
+                    <label className="form-label">
+                      Plant Type:
+                      <input
+                        type="text"
+                        className="form-control"
+                        value={updatedFields.plantType}
+                        onChange={(e) =>
+                          handleFieldChange("plantType", e.target.value)
+                        }
+                      />
+                    </label>
+                  </div>
+
+                  <div className="mb-3">
+                    <label className="form-label">
+                      No. of Lands:
+                      <input
+                        type="text"
+                        className="form-control"
+                        value={updatedFields.numberOfLands}
+                        onChange={(e) =>
+                          handleFieldChange("numberOfLands", e.target.value)
+                        }
+                      />
+                    </label>
+                  </div>
+
+                  <div className="mb-3">
+                    <label className="form-label">
+                      Acreage:
+                      <input
+                        type="text"
+                        className="form-control"
+                        value={updatedFields.acreage}
+                        onChange={(e) =>
+                          handleFieldChange("acreage", e.target.value)
+                        }
+                      />
+                    </label>
+                  </div>
+
+                  <Button variant="primary" onClick={handleUpdateProfile}>
+                    Update Profile
+                  </Button>
+                </div>
+              </Col>
+
+              <Col md={2}></Col>
+            </Row>
+          </div>
         </div>
-        <div style={styles.updateFields}>
-          <h3>Update Profile Fields:</h3>
-          <div style={styles.updateFieldsLabel}>
-            <label>
-              Phone Number:
-              <input
-                type="text"
-                value={updatedFields.phoneNumber}
-                onChange={(e) =>
-                  handleFieldChange("phoneNumber", e.target.value)
-                }
-              />
-            </label>
-          </div>
-          <div style={styles.updateFieldsLabel}>
-            <label>
-              Location:
-              <input
-                type="text"
-                value={updatedFields.location}
-                onChange={(e) =>
-                  handleFieldChange("location", e.target.value)
-                }
-              />
-            </label>
-          </div>
-          <div style={styles.updateFieldsLabel}>
-            <label>
-              Plant Type:
-              <input
-                type="text"
-                value={updatedFields.plantType}
-                onChange={(e) =>
-                  handleFieldChange("plantType", e.target.value)
-                }
-              />
-            </label>
-          </div>
-          <div style={styles.updateFieldsLabel}>
-            <label>
-              No. of Lands:
-              <input
-                type="text"
-                value={updatedFields.numberOfLands}
-                onChange={(e) =>
-                  handleFieldChange("numberOfLands", e.target.value)
-                }
-              />
-            </label>
-          </div>
-          <div style={styles.updateFieldsLabel}>
-            <label>
-              Acreage:
-              <input
-                type="text"
-                value={updatedFields.acreage}
-                onChange={(e) =>
-                  handleFieldChange("acreage", e.target.value)
-                }
-              />
-            </label>
-          </div>
-          <br />
-          <Button variant="outline-primary" onClick={handleUpdateProfile}>Update Profile</Button>
-        </div>
-      </div>
-    </div>
+      </Col>
+      <Col md={3}></Col>
+    </Row>
   );
 };
 
@@ -155,27 +192,36 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    height: "100vh",
+   
+    backgroundColor:"#233d4d"
   },
   dashboard: {
-    textAlign: "center",
+    //
     padding: "20px",
     border: "1px solid #ccc",
     borderRadius: "8px",
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
     backgroundColor: "#fff",
+    marginTop: "2em",
+    marginBottom:"2em"
   },
   profileImage: {
     width: "150px",
+    alignItems: "center",
+    justifyContent: "center",
     height: "150px",
     borderRadius: "50%",
     objectFit: "cover",
     marginBottom: "20px",
+    display: "flex",
+    flexDirection: "column",
   },
   title: {
     fontSize: "24px",
     fontWeight: "bold",
+    textAlign: "center",
     marginBottom: "20px",
+    color: "#5465ff",
   },
   details: {
     fontSize: "16px",

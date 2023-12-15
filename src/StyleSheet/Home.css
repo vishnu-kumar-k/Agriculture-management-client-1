@@ -108,7 +108,7 @@ font-family: 'Poppins', sans-serif;
   background-image: url("../Images/image-9.jpg");
   background-size: cover;
   background-attachment: fixed; /* Add this line to fix the background image */
-  
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   

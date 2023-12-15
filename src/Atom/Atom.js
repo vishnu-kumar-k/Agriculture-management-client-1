@@ -17,3 +17,13 @@ export const jsonwebtoken = atom({
   key: "jsonwebtoken",
   default: localStorage.getItem("jwt"),
 });
+
+export const Portfolio=atom({
+  key:"Portfolio",
+  default:1
+})
+
+export const Plant=atom({
+  key:"Plant",
+  default:1
+})

@@ -1,6 +1,9 @@
 import React, { useRef } from 'react'
 import '../StyleSheet/Home.css'
+import { Portfolio } from '../Atom/Atom';
+import { useRecoilState } from 'recoil';
 const ProductPortfolio = () => {
+  const[portfolio,setPortfolio]=useRecoilState(Portfolio);
     
 
     const eefBenefits = [
@@ -100,7 +103,7 @@ const ProductPortfolio = () => {
   return (
     <div className='product-portfolio-container'>
        <div className='product-portfolio'>
-      
+      {portfolio!==1?null:
       <div id="Enhanced-Efficiency-Fertilizers">
         <h2>Key Aspects and Benefits of Enhanced Efficiency Fertilizers (EEFs)</h2>
         <ul>
@@ -109,8 +112,9 @@ const ProductPortfolio = () => {
           ))}
         </ul>
       </div>
+      }
 
-      {/* Bulk Fertilizers */}
+      {portfolio!==2?null:
       <div id="Bulk-Fertilizers">
         <h2>Key Aspects and Benefits of Bulk Fertilizers</h2>
         <ul>
@@ -119,8 +123,9 @@ const ProductPortfolio = () => {
           ))}
         </ul>
       </div>
+      }
 
-      {/* Specialty Fertilizers */}
+      {portfolio!==3?null:
       <div id="Specialty-Fertilizers">
         <h2>Key Aspects and Benefits of Specialty Fertilizers</h2>
         <ul>
@@ -128,9 +133,9 @@ const ProductPortfolio = () => {
             <li key={index}>{benefit}</li>
           ))}
         </ul>
-      </div>
+      </div>}
 
-      {/* Water Soluble Fertilizers */}
+      {portfolio!==4?null:
       <div id="Water-Soluble-Fertilizers">
         <h2>Key Aspects and Benefits of Water Soluble Fertilizers</h2>
         <ul>
@@ -139,8 +144,9 @@ const ProductPortfolio = () => {
           ))}
         </ul>
       </div>
+      }
 
-      {/* Micronutrients Fertilizers */}
+      {portfolio!==5?null:
       <div id="Micronutrients-Fertilizers">
         <h2>Key Aspects and Benefits of Micronutrients Fertilizers</h2>
         <ul>
@@ -148,9 +154,9 @@ const ProductPortfolio = () => {
             <li key={index}>{benefit}</li>
           ))}
         </ul>
-      </div>
+      </div>}
 
-      {/* Secondary Nutrients */}
+     {portfolio!==6?null:
       <div id="Secondary-Nutrients">
         <h2>Key Aspects and Benefits of Secondary Nutrients</h2>
         <ul>
@@ -158,9 +164,9 @@ const ProductPortfolio = () => {
             <li key={index}>{benefit}</li>
           ))}
         </ul>
-      </div>
+      </div>}
 
-      {/* Crop & Stage Specific Fertilizers */}
+      {portfolio!==7?null:
       <div id="Crop-Stage-Specific-Fertilizers">
         <h2>Key Aspects and Benefits of Crop & Stage Specific Fertilizers</h2>
         <ul>
@@ -169,6 +175,7 @@ const ProductPortfolio = () => {
           ))}
         </ul>
       </div>
+      }
     </div>
     </div>
   )
